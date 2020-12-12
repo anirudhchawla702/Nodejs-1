@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var testRouter = require('./routes/testapi');
+const mongoose  = require('mongoose');
 
 var app = express();
 
@@ -28,7 +29,20 @@ app.use('/test',testRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+var url = "mongodb+srv://anirudh:angel%4012345@cluster0.u1vja.mongodb.net/test?authSource=admin&replicaSet=atlas-q0xuph-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true";
 
+mongoose.connect(url, {
+  useNewUrlParser : true,
+ useUnifiedTopology : true,
+ useFindAndModify: false,
+ useCreateIndex: true,
+});
+
+mongoose.connection
+  .once("open", () => console.log("DB Connected"))
+  .on("error", (error) => {
+    console.log("Error While Connecting With DB");
+  });
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
