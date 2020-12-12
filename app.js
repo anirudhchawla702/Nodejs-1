@@ -33,9 +33,6 @@ var url = "mongodb+srv://anirudh:angel%4012345@cluster0.u1vja.mongodb.net/test?a
 
 mongoose.connect(url, {
   useNewUrlParser : true,
- useUnifiedTopology : true,
- useFindAndModify: false,
- useCreateIndex: true,
 });
 
 mongoose.connection
