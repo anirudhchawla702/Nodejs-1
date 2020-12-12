@@ -12,8 +12,9 @@ router.post("/testapi", async function(req, res, next) {
         var record = await new model({
             name : name,
         });
+        record.save();
         if(record){
-            record.save();
+           
             res.status(200).json({ IsSuccess: true , Data: record });
         }else{
             res.status(200).json({ IsSuccess: true , Message: "Not Added" });
