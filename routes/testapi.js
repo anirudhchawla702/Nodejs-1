@@ -13,7 +13,7 @@ router.post("/testapi", async function(req, res, next) {
             name : name,
         });
         if(record){
-            await record.save();
+            record.save();
             res.status(200).json({ IsSuccess: true , Data: record });
         }else{
             res.status(200).json({ IsSuccess: true , Message: "Not Added" });
