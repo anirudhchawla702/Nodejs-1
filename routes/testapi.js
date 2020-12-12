@@ -15,19 +15,11 @@ router.post("/testapi", async function(req, res, next) {
         if(record){
             await record.save();
             res.status(200).json({ IsSuccess: true , Data: record });
-            // MongoClient.connect(url, function(err, db) {
-            //     if (err) throw err;
-            //     var dbo = db.db("firstdatabase");
-            //     var myobj = record;
-            //     dbo.collection("Topics").insertOne(myobj, function(err, res) {
-            //       if (err) throw err;
-            //       console.log("1 document inserted");
-            //       db.close();
-            //     });
-            //   });
+        }else{
+            res.status(200).json({ IsSuccess: true , Message: "Not Added" });
         }
-    } catch (err) {
-        res.status(500).json({ Message: err.message, Data: 0, IsSuccess: false });
+    } catch (error) {
+        res.status(500).json({ Message: error.message, Data: 0, IsSuccess: false });
     }
 });
 
