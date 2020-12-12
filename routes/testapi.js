@@ -4,7 +4,6 @@ var MongoClient = require('mongodb').MongoClient;
 var express = require('express');
 var router = express.Router();
 var model = require("../model/test");
-var url = "mongodb+srv://anirudh:angel%4012345@cluster0.u1vja.mongodb.net/test?authSource=admin&replicaSet=atlas-q0xuph-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true";
 
 router.post("/testapi", async function(req, res, next) {
     const { name } = req.body;
@@ -12,9 +11,8 @@ router.post("/testapi", async function(req, res, next) {
         var record = await new model({
             name : name,
         });
-        record.save();
+        var temp = await record.save();
         if(record){
-           
             res.status(200).json({ IsSuccess: true , Data: record });
         }else{
             res.status(200).json({ IsSuccess: true , Message: "Not Added" });
